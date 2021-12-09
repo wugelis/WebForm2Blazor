@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cus.WebForm", "UseSQLWebApplication1\Cus.WebForm.csproj", "{9907F988-73E8-4B7B-8297-0AE117BA35B0}"
 EndProject
@@ -24,6 +24,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataTier", "DataTier", "{F9B89EC3-6E52-4708-8DE6-F77B541CA4B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{B61ECB48-EF65-4F37-A7B3-0566C8B5CE15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDF74BD9-880D-43E6-BC1D-8F5CED5D3167}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorHostedByServer", "BlazorHostedByServer", "{90C8BE59-8CFF-472A-B520-17833AB28EF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCusApp1.Server", "BlazorCusApp1\Server\BlazorCusApp1.Server.csproj", "{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCusApp1.Client", "BlazorCusApp1\Client\BlazorCusApp1.Client.csproj", "{F768F458-65B1-4B9E-9C99-0463EAACCE67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCusApp1.Shared", "BlazorCusApp1\Shared\BlazorCusApp1.Shared.csproj", "{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +72,18 @@ Global
 		{B0F73C0C-54FA-4DA7-8FF2-12517BD63464}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F73C0C-54FA-4DA7-8FF2-12517BD63464}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F73C0C-54FA-4DA7-8FF2-12517BD63464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F768F458-65B1-4B9E-9C99-0463EAACCE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F768F458-65B1-4B9E-9C99-0463EAACCE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F768F458-65B1-4B9E-9C99-0463EAACCE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F768F458-65B1-4B9E-9C99-0463EAACCE67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +96,12 @@ Global
 		{4CD0FA17-1123-446B-92F1-B7A400827FBF} = {A82C380A-75F7-4771-8CD2-8B26B7EE5340}
 		{26A9C01E-4088-4A8E-BDA8-ACE12FE23494} = {A82C380A-75F7-4771-8CD2-8B26B7EE5340}
 		{B0F73C0C-54FA-4DA7-8FF2-12517BD63464} = {1D6607F6-9178-4C6A-8B0E-7BDB90E446FE}
+		{90C8BE59-8CFF-472A-B520-17833AB28EF9} = {1D6607F6-9178-4C6A-8B0E-7BDB90E446FE}
+		{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12} = {90C8BE59-8CFF-472A-B520-17833AB28EF9}
+		{F768F458-65B1-4B9E-9C99-0463EAACCE67} = {90C8BE59-8CFF-472A-B520-17833AB28EF9}
+		{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE} = {90C8BE59-8CFF-472A-B520-17833AB28EF9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DC7D3B0-DDDC-48E1-B57B-1347087449D3}
 	EndGlobalSection
 EndGlobal

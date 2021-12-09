@@ -12,10 +12,12 @@ namespace Cus.MVC5.Controllers.Api
     public class CusOrderApiController : ApiController
     {
         private ICustomersService _customer = null;
+        private readonly IOrdersService _ordersService;
 
-        public CusOrderApiController(ICustomersService customer)
+        public CusOrderApiController(ICustomersService customer, IOrdersService ordersService)
         {
             _customer = customer;
+            _ordersService = ordersService;
         }
 
         public IEnumerable<CusOrderViewModel> Get()
@@ -26,6 +28,11 @@ namespace Cus.MVC5.Controllers.Api
         public IEnumerable<CusOrderViewModel> Get(string id)
         {
             return _customer.GetByCusID(id);
+        }
+
+        public bool AddOrder(OrderViewModel order)
+        {
+            return _ordersService.AddOrder(order) > 0;
         }
     }
 }
