@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,9 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Cus.Services\Cus.Services.csproj" />
     <ProjectReference Include="..\Client\BlazorCusApp1.Client.csproj" />
     <ProjectReference Include="..\Shared\BlazorCusApp1.Shared.csproj" />
   </ItemGroup>

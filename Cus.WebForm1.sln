@@ -32,11 +32,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorHostedByServer", "BlazorHostedByServer", "{90C8BE59-8CFF-472A-B520-17833AB28EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCusApp1.Server", "BlazorCusApp1\Server\BlazorCusApp1.Server.csproj", "{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCusApp1.Server", "BlazorCusApp1\Server\BlazorCusApp1.Server.csproj", "{E7E5E232-6F47-4836-B12B-7C7A4F6ECB12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCusApp1.Client", "BlazorCusApp1\Client\BlazorCusApp1.Client.csproj", "{F768F458-65B1-4B9E-9C99-0463EAACCE67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCusApp1.Client", "BlazorCusApp1\Client\BlazorCusApp1.Client.csproj", "{F768F458-65B1-4B9E-9C99-0463EAACCE67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCusApp1.Shared", "BlazorCusApp1\Shared\BlazorCusApp1.Shared.csproj", "{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCusApp1.Shared", "BlazorCusApp1\Shared\BlazorCusApp1.Shared.csproj", "{7B6D3F6D-B2C4-432D-9E88-42D33576D5FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

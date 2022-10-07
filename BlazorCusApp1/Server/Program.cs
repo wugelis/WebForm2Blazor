@@ -1,3 +1,6 @@
+using BlazorCusApp1.Server.Application;
+using BlazorCusApp1.Server.Infrastructure.Models;
+using BlazorCusApp1.Server.Infrastructure.Repositories;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +9,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddCors(setupAction =>
+                setupAction.AddPolicy("MyCorsPolicy", configure => {
+                    configure
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                }));
+
+builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IShipperRepository, ShipperRepository>();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -21,13 +42,13 @@ else
     app.UseHsts();
 }
 
+app.UseCors("MyCorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 
 app.MapRazorPages();
 app.MapControllers();

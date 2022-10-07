@@ -1,9 +1,50 @@
 ﻿@page "/"
+@using Cus.ViewModels
+@using System.Text.Json
+@using EasyArchitect.Web.Blazor.Components
+@*@inject HttpClient client*@
+@inject NavigationManager _uriHelper
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>北風聯絡人名稱</h1>
 
-Welcome to your new app.
+<div>
+    <p>
+        客戶連絡名稱：
+        <select name="ddlCusContacts" id="ddlCusContacts" style="width:169px;" @onchange="SelectedCusContact">
+            @if (_customers == null)
+            {
+                <option>Loading....</option>
+            }
+            else
+            {
+                @foreach (var cus in _customers)
+                {
+                    <option value="@cus.CustomerID">@cus.ContactName</option>
+                }
+            }
+        </select>
+    </p>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    <button name="btnFindOrderByCus" id="btnFindOrderByCus" @onclick="GetCustomers" class="btn btn-primary">查詢客戶訂單</button>
+    <button name="btnAddOrder" id="btnAddOrder" class="btn btn-primary" @onclick="AddOrder">新增訂單</button>
+    <br />
+    <div>
+        <p>
+            <GridView DataSource="_dataSource">
+                <Columns>
+                    <GridViewItem ColumnName="CustomerId"></GridViewItem>
+                    <GridViewItem ColumnName="CompanyName"></GridViewItem>
+                    <GridViewItem ColumnName="ContactName"></GridViewItem>
+                    <GridViewItem ColumnName="City"></GridViewItem>
+                    <GridViewItem ColumnName="OrderID"></GridViewItem>
+                    <GridViewItem ColumnName="UnitPrice"></GridViewItem>
+                    <GridViewItem ColumnName="ProductID"></GridViewItem>
+                    <GridViewItem ColumnName="ProductName"></GridViewItem>
+                    <GridViewItem ColumnName="OrderDate"></GridViewItem>
+                </Columns>
+            </GridView>
+        </p>
+    </div>
+</div>

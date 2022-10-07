@@ -1,0 +1,161 @@
+﻿@page "/addorder"
+@using Cus.ViewModels
+@*@inject HttpClient client
+*@
+<h3>新增訂單</h3>
+
+<div>
+    <strong>登打訂單資料</strong>
+    <table>
+        <tr>
+            <td>聯絡人代碼：</td>
+            <td>@_addOrder.CustomerID</td>
+        </tr>
+        <tr>
+            <td>聯絡人名稱：</td>
+            <td>@_addOrder.ContactName</td>
+        </tr>
+        <tr>
+            <td>產品名稱：</td>
+            <td>
+                <select>
+                    @if(_addOrder == null || _addOrder.ProductList == null)
+                    {
+                        <option>Loading...</option>
+                    }
+                    else
+                    {
+                        foreach(var pro in _addOrder.ProductList)
+                        {
+                            <option value="@pro.ProductID">@pro.ProductName</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>產品接洽人員：</td>
+            <td>
+                <select>
+                    @if(_addOrder == null || _addOrder.EmployeeList == null)
+                    {
+                        <option>Loading...</option>
+                    }
+                    else
+                    {
+                        foreach(var emp in _addOrder.EmployeeList)
+                        {
+                            <option value="@emp.EmployeeID">@(emp.FirstName + " " + emp.LastName)</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>數量：</td>
+            <td>
+                <input type="text" value="100" class="form form-control" id="count"/>
+            </td>
+        </tr>
+        <tr>
+            <td>貨運名稱：</td>
+            <td>
+                <select>
+                    @if(_addOrder == null || _addOrder.ShipperList == null)
+                    {
+                        <option>Loading...</option>
+                    }
+                    else
+                    {
+                        foreach(var ship in _addOrder.ShipperList)
+                        {
+                            <option value="@ship.ShipperID">@ship.CompanyName</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>貨運地址：</td>
+            <td>
+                <input type="text" value="" class="form form-control" id="shipperName"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn btn-primary">確認訂購</button>
+                <button class="btn btn-primary">取消訂購</button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+@code {
+    private string startUrl = @"https://localhost:7000/";
+    private AddOrderViewModel? _addOrder = null;
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string CustomerID { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string ContactName { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (_addOrder == null)
+        {
+            _addOrder = new AddOrderViewModel();
+
+            await this.InvokeAsync(async () =>
+                {
+                    _addOrder.CustomerID = CustomerID;
+                    _addOrder.ContactName = await GetContactName();
+                });
+        }
+
+        await PrepareProduct();
+
+        await PrepareEmployee();
+
+        await PrepareShipper();
+
+        await base.OnInitializedAsync();
+    }
+
+    async Task PrepareProduct()
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri(@$"{startUrl}");
+        _addOrder.ProductList = await client.GetFromJsonAsync<IEnumerable<ProductViewModel>>(@$"api/Customer/GetProducts");
+    }
+
+    async Task PrepareEmployee()
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri(@$"{startUrl}");
+        _addOrder.EmployeeList = await client.GetFromJsonAsync<IEnumerable<EmployeeViewModel>>(@$"api/Customer/GetEmployees");
+    }
+
+    async Task PrepareShipper()
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri(@$"{startUrl}");
+        _addOrder.ShipperList = new List<ShipperViewModel>(new ShipperViewModel[]
+        {
+            new ShipperViewModel() { CompanyName = "Speedy Express", ShipperID = 1},
+            new ShipperViewModel() { CompanyName = "United Package", ShipperID = 2},
+            new ShipperViewModel() { CompanyName = "Federal Shipping", ShipperID = 3}
+        });
+    }
+
+    async Task<string> GetContactName()
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri(@$"{startUrl}");
+        string result = await client.GetStringAsync(@$"api/Customer/GetCustomerByCustomerID/{CustomerID}");
+        return result;
+    }
+}

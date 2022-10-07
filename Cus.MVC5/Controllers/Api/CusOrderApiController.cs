@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Cus.MVC5.Controllers.Api
 {
+    [EnableCors(origins: "http://localhost:7000/", headers: "*", methods: "*")]
     public class CusOrderApiController : ApiController
     {
         private ICustomersService _customer = null;
