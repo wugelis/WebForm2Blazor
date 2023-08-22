@@ -1,10 +1,14 @@
 ﻿using BlazorCusApp1.Server.Infrastructure.Models;
 using BlazorCusApp1.Server.Infrastructure.Repositories;
+using Cus.Services.Interface;
 using Cus.ViewModels;
 
 namespace BlazorCusApp1.Server.Application
 {
-    public class CRM
+    /// <summary>
+    /// 由於在這裡無法注入 net451 的 DbContext，所以只好用這種方式來重新實作相關聯的 interfaces
+    /// </summary>
+    public class CRM: ICustomersService, IEmployeesService, IOrdersService, IProductsService, IShippersService
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IOrderRepository _orderRepository;
@@ -32,7 +36,7 @@ namespace BlazorCusApp1.Server.Application
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<CustomerViewModel> GetCustomers()
+        public IEnumerable<CustomerViewModel> GetCustomerList()
         {
             var result = from cus in _customerRepository.GetAllCustomers()
                          select new CustomerViewModel()
@@ -158,6 +162,26 @@ namespace BlazorCusApp1.Server.Application
         public string GetCustomerByCustomerID(string customerId)
         {
             return _customerRepository.GetCustomerByCustomerID(customerId);
+        }
+
+        public IEnumerable<CusOrderViewModel> GetByCusID(string CusID)
+        {
+            throw new NotImplementedException();
+        }
+
+        object ICustomersService.GetCustomerByCustomerID(string CustomerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddOrder(OrderViewModel orders)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetProductPriceByProductID(int ProductID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

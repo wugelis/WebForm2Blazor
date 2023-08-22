@@ -41,7 +41,7 @@ namespace BlazorCusApp1.Server.Controllers
         [Route("GetCustomers")]
         public IEnumerable<CustomerViewModel> GetCustomers()
         {
-            var result = _crm.GetCustomers();
+            var result = _crm.GetCustomerList();
 
             return result;
         }
